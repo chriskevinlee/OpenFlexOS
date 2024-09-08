@@ -58,52 +58,53 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 ├── environment
 ├── menu.xml
 ├── png_icons
-│   ├── battery-charging.png
-│   ├── battery-discharging.png
-│   ├── battery-full.png
-│   ├── brightness.png
-│   ├── cancel.png
-│   ├── computer.png
-│   ├── menu.png
-│   ├── personal-computer.png
-│   ├── power-on.png
-│   ├── ssh.png
-│   ├── volume.png
-│   └── wifi.png
+│   ├── battery-charging.png
+│   ├── battery-discharging.png
+│   ├── battery-full.png
+│   ├── brightness.png
+│   ├── cancel.png
+│   ├── computer.png
+│   ├── menu.png
+│   ├── personal-computer.png
+│   ├── power-on.png
+│   ├── ssh.png
+│   ├── volume.png
+│   └── wifi.png
 ├── rc.xml
 ├── rofi
-│   ├── config.rasi
-│   └── mytheme2.rasi
+│   ├── config.rasi
+│   └── mytheme2.rasi
 ├── scripts
-│   ├── battery.sh
-│   ├── brightness.sh
-│   ├── nmcli.sh
-│   ├── power.sh
-│   ├── rofi.sh
-│   ├── rofi-wifi-menu.sh
-│   ├── sh_wallpaper.sh
-│   ├── sounds.sh
-│   ├── ssh.sh
-│   └── volume.sh
+│   ├── battery.sh
+│   ├── brightness.sh
+│   ├── nmcli.sh
+│   ├── power.sh
+│   ├── rofi.sh
+│   ├── rofi-wifi-menu.sh
+│   ├── sh_wallpaper.sh
+│   ├── sounds.sh
+│   ├── ssh.sh
+│   └── volume.sh
 ├── .selected_wallpaper
 ├── sounds
-│   ├── 8-bit-spaceship-startup-102666.mp3
-│   ├── ambient-piano-logo-165357.mp3
-│   ├── computer-startup-music-97699.mp3
-│   ├── cozy-weaves-soft-logo-176378.mp3
-│   ├── cute-level-up-3-189853.mp3
-│   ├── game-bonus-144751.mp3
-│   ├── introduction-sound-201413.mp3
-│   ├── level-up-191997.mp3
-│   ├── lovelyboot1-103697.mp3
-│   ├── marimba-win-f-2-209688.mp3
-│   ├── retro-audio-logo-94648.mp3
-│   ├── start-computeraif-14572.mp3
-│   ├── startup-87026.mp3
-│   ├── startup-sound-fx-1-roland-mt-32-95204.mp3
-│   └── system-notification-199277.mp3
+│   ├── 8-bit-spaceship-startup-102666.mp3
+│   ├── ambient-piano-logo-165357.mp3
+│   ├── computer-startup-music-97699.mp3
+│   ├── cozy-weaves-soft-logo-176378.mp3
+│   ├── cute-level-up-3-189853.mp3
+│   ├── game-bonus-144751.mp3
+│   ├── introduction-sound-201413.mp3
+│   ├── level-up-191997.mp3
+│   ├── lovelyboot1-103697.mp3
+│   ├── marimba-win-f-2-209688.mp3
+│   ├── retro-audio-logo-94648.mp3
+│   ├── start-computeraif-14572.mp3
+│   ├── startup-87026.mp3
+│   ├── startup-sound-fx-1-roland-mt-32-95204.mp3
+│   └── system-notification-199277.mp3
 └── tint2
     └── tint2rc
+
 
 ### Qtile Script and Configurations stored at 
 .config/qtile
