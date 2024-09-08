@@ -184,7 +184,7 @@ Once these files have been edited the script will update the grub configuration 
 **/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists  
 **/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy  
 
-The following will be added to /etc/environment
+The following will be added to **/etc/environment**
 
 QT_QPA_PLATFORMTHEME=qt5ct
 QT_AUTO_SCREEN_SCALE_FACTOR=0
