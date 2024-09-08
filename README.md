@@ -193,7 +193,7 @@ QT_FONT_DPI=96
 
 ### Known Issues
 
-If running in a VirtualBox vm picom will casue the mouse and to work correctly and cause things to be really slow or not to respond . To fix this you maybe to enter a tty and comment picom from the autostart file for one or both of openbox and qtile
+If running in a VirtualBox vm picom will casue the mouse not to work correctly and cause things to be really slow or not to respond . To fix this you maybe to enter a tty and comment picom from the autostart file for one or both of openbox and qtile
 
 # How do I Install OpenFlexOS?
 
