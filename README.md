@@ -168,7 +168,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 # Notes
 
 ### Suspend and Hibernation: 
-Suspend and Hibernation should work as long as you have swap setup and configured with enough space. Some system files will be edited by the script to get Suspend and Hibernation to work for:
+Suspend and Hibernation should work as long as you have swap setup and configured with enough space. Some system files will be edited by the script to get Suspend and Hibernation to work, for:
 
 /etc/mkinitcpio.conf resume will be added to HOOKS=
 
