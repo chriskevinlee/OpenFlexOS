@@ -108,6 +108,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 ```
 
 ### Qtile Script and Configurations stored at 
+```
 .config/qtile
 ├── config.py
 ├── conky
@@ -145,10 +146,15 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 │   └── system-notification-199277.mp3
 └── systemd
     └── feh_wallpaper.service
+```
+
 ### Wallpaper Changer script is at
+```
 /usr/local/bin
 └── wallpaper_changer.sh
+```
 ### Default Wallpapers stored at
+```
 .config/wallpapers
 └── default
     ├── 6xVGpvY-arch-linux-wallpaper.png
@@ -158,7 +164,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
     ├── PKt7K9T-arch-linux-wallpaper.jpg
     ├── R4ct6De-arch-linux-wallpaper.png
     └── zxAAEx2-arch-linux-wallpaper.jpg
-
+```
 # Notes
 
 ### Suspend and Hibernation: 
