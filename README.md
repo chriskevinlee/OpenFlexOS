@@ -186,10 +186,10 @@ Once these files have been edited the script will update the grub configuration 
 
 The following will be added to **/etc/environment**
 
-QT_QPA_PLATFORMTHEME=qt5ct
-QT_AUTO_SCREEN_SCALE_FACTOR=0
-QT_SCALE_FACTOR=1
-QT_FONT_DPI=96
+QT_QPA_PLATFORMTHEME=qt5ct  
+QT_AUTO_SCREEN_SCALE_FACTOR=0  
+QT_SCALE_FACTOR=1  
+QT_FONT_DPI=96  
 
 ### Known Issues
 
