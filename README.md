@@ -178,11 +178,11 @@ Once these files have been edited the script will update the grub configuration 
 
 ### System files being edited
 
-**/etc/default/useradd**: SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh
-**/etc/sudoers**: will be edited to enable the wheel group to allow sudo users to run sudo 
-**/etc/pacman.conf**: will replace \#Color with Color
-**/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists
-**/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy
+**/etc/default/useradd**: SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh  
+**/etc/sudoers**: will be edited to enable the wheel group to allow sudo users to run sudo   
+**/etc/pacman.conf**: will replace \#Color with Color  
+**/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists  
+**/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy  
 
 The following will be added to /etc/environment
 
