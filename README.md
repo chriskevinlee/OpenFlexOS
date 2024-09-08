@@ -170,19 +170,19 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 ### Suspend and Hibernation: 
 Suspend and Hibernation should work as long as you have swap setup and configured with enough space. Some system files will be edited by the script to get Suspend and Hibernation to work, for:
 
-**/etc/mkinitcpio.conf** resume will be added to HOOKS=  
+**/etc/mkinitcpio.conf**: resume will be added to HOOKS=  
 
-**/etc/default/grub** GRUB_CMDLINE_LINUX= will be replaced with GRUB_CMDLINE_LINUX="resume=/dev/sda1" (/dev/sda1 being the swap device name)  
+**/etc/default/grub**: GRUB_CMDLINE_LINUX= will be replaced with GRUB_CMDLINE_LINUX="resume=/dev/sda1" (/dev/sda1 being the swap device name)  
 
 Once these files have been edited the script will update the grub configuration with grub-mkconfig -o /boot/grub/grub.cfg  
 
 ### System files being edited
 
-/etc/default/useradd SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh
-/etc/sudoers will be edited to enable the wheel group to allow sudo users to run sudo 
-/etc/pacman.conf will replace \#Color with Color
-/etc/pacman.conf will replace \#VerbosePkgLists with VerbosePkgLists
-/etc/pacman.conf will be edited to find \#ParallelDownloads and add ILoveCandy
+**/etc/default/useradd**: SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh
+**/etc/sudoers**: will be edited to enable the wheel group to allow sudo users to run sudo 
+**/etc/pacman.conf**: will replace \#Color with Color
+**/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists
+**/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy
 
 The following will be added to /etc/environment
 
