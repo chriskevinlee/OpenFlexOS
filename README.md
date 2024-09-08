@@ -53,6 +53,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 # Script and configuration File Locations 
 
 ### OpenBox Script and Configurations stored at 
+```
 .config/openbox
 ├── autostart
 ├── environment
@@ -104,7 +105,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 │   └── system-notification-199277.mp3
 └── tint2
     └── tint2rc
-
+```
 
 ### Qtile Script and Configurations stored at 
 .config/qtile
