@@ -50,9 +50,9 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
 - pacman-contrib
 - pkgfile
 
-# Script and configuration File Locations 
+# Scripts and configurations File Locations 
 
-### OpenBox Script and Configurations stored at 
+### OpenBox Scripts and Configurations stored at 
 ```
 .config/openbox
 ├── autostart
@@ -107,7 +107,7 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
     └── tint2rc
 ```
 
-### Qtile Script and Configurations stored at 
+### Qtile Scripts and Configurations stored at 
 ```
 .config/qtile
 ├── config.py
