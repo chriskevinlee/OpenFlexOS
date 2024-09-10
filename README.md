@@ -227,3 +227,24 @@ To run this script run
 chmod +x OpenFlexOS_Goodies.sh
 sudo ./OpenFlexOS_Goodies.
 ```
+
+
+# Qtile Keybindings
+
+| Key Binding         | Comment                                   |
+| ------------------- | ----------------------------------------- |
+| Alt d               | Open Rofi App menu                        |
+| Alt q               | Open Rofi Power Menu                      |
+| Alt f               | Open Firefox                              |
+| alt h,j,k,l         | Resize Selected Window                    |
+| Super w             | Close Selected Window                     |
+| Super Enter         | Open Alacritty Terminal                   |
+| Super Shift h,j,k,l | Move Selected Window                      |
+| Super Shift 1-9     | Move Selected Window to another workspace |
+| Super f             | Full Screen Selected Window               |
+| Super m,i           | Increase,decrease Window size             |
+| Super t             | Float Selected Window                     |
+| Super 1-9           | Switch to work Space                      |
+| Super tab           | Switch Layout                             |
+| Super ctrl r        | Reload Qtile Config                       |
+| Super h,j,k,l       | Select a Window                           |
