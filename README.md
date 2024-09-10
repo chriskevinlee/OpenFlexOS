@@ -248,4 +248,4 @@ sudo ./OpenFlexOS_Goodies.
 | Super tab           | Switch Layout                             |
 | Super ctrl r        | Reload Qtile Config                       |
 | Super h,j,k,l       | Select a Window                           |
-| ctrl w x            | Open Wallpaper Chnanger first and select a wallpaper |
+| ctrl w x            | Open Wallpaper Changer first and select a wallpaper |
