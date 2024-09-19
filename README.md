@@ -435,22 +435,17 @@ screens = [
 
 ```
 
+# Set Keyboard Layout
 
+You may need to set the keyboard layout for the graphical interface by running the following command to display the keyboard layouts you can use 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
+localectl list-x11-keymap-layouts
+```
+To set the keyboard layout run, i am using gb as a exmaple
+```
+sudo localectl set-x11-keymap gb
+```
 
 # How do I Install OpenFlexOS?
 
