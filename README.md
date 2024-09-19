@@ -195,6 +195,263 @@ QT_FONT_DPI=96
 
 If running in a VirtualBox vm picom will casue the mouse not to work correctly and cause things to be really slow or not to respond . To fix this you maybe to enter a tty and comment picom from the autostart file for one or both of openbox and qtile
 
+# Show Qtile bar on all Screens
+
+Your default configuration for the Qtile bar will be like...
+
+```
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.TextBox(
+                    text=" ",
+                    foreground='#00ffff',  # Aqua
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("rofi.sh"))}
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#4666ff',  # Neon Blue
+                    format="  %a %d-%m-%Y",
+                    #format="  %a %d-%B-%Y",
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#ffe135',  # Banana Yellow
+                    format="  %I:%M:%S %p",
+                ),
+                widget.Spacer(length=10),
+                widget.CPU(
+                    format='   {load_percent}%', 
+                    foreground='#ff5800',  # Orange (Crayola)
+                ),
+                widget.Spacer(length=10),
+                widget.Memory(
+                    foreground='#ccff00',  # Electric Lime
+                    format='   {MemPercent}%',
+                ),
+                widget.Spacer(),
+                widget.GroupBox(
+                    active='#ffd700',  # Gold1
+                ),
+                widget.WindowName(
+                    foreground='#39ff14',  # Neon Greenf
+                    max_chars=70
+                ),
+                widget.Systray(),
+                widget.Spacer(length=20),
+                widget.CurrentLayout(
+                    foreground='#fc74fd',  # Pink Flamingo
+                ),
+                widget.Spacer(length=10),
+                BrightnessWidget(),
+                VolumeWidget(),
+                widget.Spacer(length=10),
+                widget.CheckUpdates(
+                    distro="Arch",
+                    colour_have_updates='#f38fa9',
+                    colour_no_updates='#f38fa9', 
+                    display_format='󰇚 {updates}',
+                ),
+                widget.Spacer(length=10),
+                battery_widget(),
+                widget.Spacer(length=10),
+                script_widget,  # (Network Widget) A Script runs and displays an icon depending on if connected to wifi, ethernet, or disconnected
+                ssh_widget,
+                widget.Spacer(length=10),
+                current_user_widget,
+                widget.TextBox(
+                    text="⏻ ",
+                    foreground='#00ff7f',  # SpringGreen1
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("power.sh"))},
+                ),
+                # End of My Config: Added and moved widgets
+            ],
+            24,
+        ),
+    ),
+]
+
+```
+
+We need to change the way we display the Qtile bar. To display on all screens we need to create a function to store the Qtile bar config in like this. Copy this and paste it towards the top of your config.py
+
+```
+def init_bar():
+    return bar.Bar(
+        [
+                widget.TextBox(
+                    text=" ",
+                    foreground='#00ffff',  # Aqua
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("rofi.sh"))}
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#4666ff',  # Neon Blue
+                    format="  %a %d-%m-%Y",
+                    #format="  %a %d-%B-%Y",
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#ffe135',  # Banana Yellow
+                    format="  %I:%M:%S %p",
+                ),
+                widget.Spacer(length=10),
+                widget.CPU(
+                    format='   {load_percent}%', 
+                    foreground='#ff5800',  # Orange (Crayola)
+                ),
+                widget.Spacer(length=10),
+                widget.Memory(
+                    foreground='#ccff00',  # Electric Lime
+                    format='   {MemPercent}%',
+                ),
+                widget.Spacer(),
+                widget.GroupBox(
+                    active='#ffd700',  # Gold1
+                ),
+                widget.WindowName(
+                    foreground='#39ff14',  # Neon Greenf
+                    max_chars=70
+                ),
+                widget.Systray(),
+                widget.Spacer(length=20),
+                widget.CurrentLayout(
+                    foreground='#fc74fd',  # Pink Flamingo
+                ),
+                widget.Spacer(length=10),
+                BrightnessWidget(),
+                VolumeWidget(),
+                widget.Spacer(length=10),
+                widget.CheckUpdates(
+                    distro="Arch",
+                    colour_have_updates='#f38fa9',
+                    colour_no_updates='#f38fa9', 
+                    display_format='󰇚 {updates}',
+                ),
+                widget.Spacer(length=10),
+                battery_widget(),
+                widget.Spacer(length=10),
+                script_widget,  # (Network Widget) A Script runs and displays an icon depending on if connected to wifi, ethernet, or disconnected
+                ssh_widget,
+                widget.Spacer(length=10),
+                current_user_widget,
+                widget.TextBox(
+                    text="⏻ ",
+                    foreground='#00ff7f',  # SpringGreen1
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("power.sh"))},
+                ),
+                # End of My Config: Added and moved widgets
+        ],
+        24,  # Bar size (height in pixels)
+    )
+```
+
+
+Now replace 
+
+```
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.TextBox(
+                    text=" ",
+                    foreground='#00ffff',  # Aqua
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("rofi.sh"))}
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#4666ff',  # Neon Blue
+                    format="  %a %d-%m-%Y",
+                    #format="  %a %d-%B-%Y",
+                ),
+                widget.Spacer(length=10),
+                widget.Clock(
+                    foreground='#ffe135',  # Banana Yellow
+                    format="  %I:%M:%S %p",
+                ),
+                widget.Spacer(length=10),
+                widget.CPU(
+                    format='   {load_percent}%', 
+                    foreground='#ff5800',  # Orange (Crayola)
+                ),
+                widget.Spacer(length=10),
+                widget.Memory(
+                    foreground='#ccff00',  # Electric Lime
+                    format='   {MemPercent}%',
+                ),
+                widget.Spacer(),
+                widget.GroupBox(
+                    active='#ffd700',  # Gold1
+                ),
+                widget.WindowName(
+                    foreground='#39ff14',  # Neon Greenf
+                    max_chars=70
+                ),
+                widget.Systray(),
+                widget.Spacer(length=20),
+                widget.CurrentLayout(
+                    foreground='#fc74fd',  # Pink Flamingo
+                ),
+                widget.Spacer(length=10),
+                BrightnessWidget(),
+                VolumeWidget(),
+                widget.Spacer(length=10),
+                widget.CheckUpdates(
+                    distro="Arch",
+                    colour_have_updates='#f38fa9',
+                    colour_no_updates='#f38fa9', 
+                    display_format='󰇚 {updates}',
+                ),
+                widget.Spacer(length=10),
+                battery_widget(),
+                widget.Spacer(length=10),
+                script_widget,  # (Network Widget) A Script runs and displays an icon depending on if connected to wifi, ethernet, or disconnected
+                ssh_widget,
+                widget.Spacer(length=10),
+                current_user_widget,
+                widget.TextBox(
+                    text="⏻ ",
+                    foreground='#00ff7f',  # SpringGreen1
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("power.sh"))},
+                ),
+                # End of My Config: Added and moved widgets
+            ],
+            24,
+        ),
+    ),
+]
+```
+
+with 
+
+```
+screens = [
+    Screen(top=init_bar()),  # Screen 1
+    Screen(top=init_bar()),  # Screen 2
+    Screen(top=init_bar()),  # Screen 3
+]
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # How do I Install OpenFlexOS?
 
 PLEASE NOTE: Run at your Own Risk. I would recommend trying out OpenFlexOS in a VM.
