@@ -165,36 +165,6 @@ Initially created for personal use, OpenFlexOS is now something I’d love to sh
     ├── R4ct6De-arch-linux-wallpaper.png
     └── zxAAEx2-arch-linux-wallpaper.jpg
 ```
-# Notes
-
-### Suspend and Hibernation: 
-Suspend and Hibernation should work as long as you have swap setup and configured with enough space. Some system files will be edited by the script to get Suspend and Hibernation to work, for:
-
-**/etc/mkinitcpio.conf**: resume will be added to HOOKS=  
-
-**/etc/default/grub**: GRUB_CMDLINE_LINUX= will be replaced with GRUB_CMDLINE_LINUX="resume=/dev/sda1" (/dev/sda1 being the swap device name)  
-
-Once these files have been edited the script will update the grub configuration with grub-mkconfig -o /boot/grub/grub.cfg  
-
-### System files being edited
-
-**/etc/default/useradd**: SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh  
-**/etc/sudoers**: will be edited to enable the wheel group to allow sudo users to run sudo   
-**/etc/pacman.conf**: will replace \#Color with Color  
-**/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists  
-**/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy  
-
-The following will be added to **/etc/environment**
-
-QT_QPA_PLATFORMTHEME=qt5ct  
-QT_AUTO_SCREEN_SCALE_FACTOR=0  
-QT_SCALE_FACTOR=1  
-QT_FONT_DPI=96  
-
-### Known Issues
-
-If running in a VirtualBox vm picom will casue the mouse not to work correctly and cause things to be really slow or not to respond . To fix this you maybe to enter a tty and comment picom from the autostart file for one or both of openbox and qtile
-
 # Show Qtile bar on all Screens
 
 Your default configuration for the Qtile bar will be like...
@@ -347,7 +317,6 @@ def init_bar():
     )
 ```
 
-
 Now replace 
 
 ```
@@ -446,6 +415,38 @@ To set the keyboard layout run, i am using gb as a exmaple
 ```
 sudo localectl set-x11-keymap gb
 ```
+
+# Notes
+
+### Suspend and Hibernation: 
+Suspend and Hibernation should work as long as you have swap setup and configured with enough space. Some system files will be edited by the script to get Suspend and Hibernation to work, for:
+
+**/etc/mkinitcpio.conf**: resume will be added to HOOKS=  
+
+**/etc/default/grub**: GRUB_CMDLINE_LINUX= will be replaced with GRUB_CMDLINE_LINUX="resume=/dev/sda1" (/dev/sda1 being the swap device name)  
+
+Once these files have been edited the script will update the grub configuration with grub-mkconfig -o /boot/grub/grub.cfg  
+
+### System files being edited
+
+**/etc/default/useradd**: SHELL=/usr/bin/bash will be replaced with SHELL=/usr/bin/zsh  
+**/etc/sudoers**: will be edited to enable the wheel group to allow sudo users to run sudo   
+**/etc/pacman.conf**: will replace \#Color with Color  
+**/etc/pacman.conf**: will replace \#VerbosePkgLists with VerbosePkgLists  
+**/etc/pacman.conf**: will be edited to find \#ParallelDownloads and add ILoveCandy  
+
+The following will be added to **/etc/environment**
+
+QT_QPA_PLATFORMTHEME=qt5ct  
+QT_AUTO_SCREEN_SCALE_FACTOR=0  
+QT_SCALE_FACTOR=1  
+QT_FONT_DPI=96  
+
+### Known Issues
+
+If running in a VirtualBox vm picom will casue the mouse not to work correctly and cause things to be really slow or not to respond . To fix this you maybe to enter a tty and comment picom from the autostart file for one or both of openbox and qtile
+
+
 
 # How do I Install OpenFlexOS?
 
