@@ -38,7 +38,11 @@ if [ -s "$CONFIG_FILE" ]; then
   SELECTED_WALLPAPER=$(cat "$CONFIG_FILE")
 
   # Apply the wallpaper using feh
-  feh --bg-scale "$SELECTED_WALLPAPER"
+  feh --bg-scale "$SELECTED_WALLPAPER" &
+elif [ ! -f "$CONFIG_FILE" ]; then
+        echo /home/$USER/.config/wallpapers/default/6xVGpvY-arch-linux-wallpaper.png > /home/$USER/.config/$DESKTOP_SESSION/.selected_wallpaper
+        SELECTED_WALLPAPER=$(cat "$CONFIG_FILE")
+        feh --bg-scale "$SELECTED_WALLPAPER" &
 fi
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
