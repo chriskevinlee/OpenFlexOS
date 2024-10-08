@@ -301,7 +301,7 @@ users_function() {
     clear
 
     # Set's a array, asks the user which window manager to install and sets a promt to tell the user to use a number
-    options=("Qtile" "Openbox" "Exit Installation Script" "Reboot" "PowerOff")
+    options=("Qtile" "Openbox" "User Configuration" "Exit Installation Script" "Reboot" "PowerOff")
     echo "Please Choose a Window Manager to install"
     PS3="Please Choose a Number: "
 
