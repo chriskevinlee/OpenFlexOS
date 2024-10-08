@@ -68,6 +68,7 @@
 
 # Function: Get zsh path, checks to see if any users already exists if not it ask the user to create a user and allows user to copy config files to already existing users and added users
 users_function() {
+
     get_zsh_path() {
         if [[ -x /bin/zsh ]]; then
             echo "/bin/zsh"
@@ -81,152 +82,110 @@ users_function() {
 
     zsh_path=$(get_zsh_path)
 
-    user_list=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
-    if ([[ ${#user_list[@]} -eq 0 ]]); then
-        read -p "No users are detected with home directories, would you like to create one? (y/n): " yn
-        if [[ $yn == "y" ]]; then
-            while true; do
-                read -p "Please enter a username: " username
-                if [[ ! -z $username ]]; then
-                    break
-                else
-                    echo "Username cannot be empty. Please enter a valid username."
-                fi
-            done
+   while true; do  # Start a loop to repeat the process
+    clear
+    # Get the list of users again (including any newly added users)
+    users=($(grep "/home/" /etc/passwd | awk -F : '{print $1}'))
 
-            while true; do
-                read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-                if [[ $yn_sudo == "y" || $yn_sudo == "n" ]]; then
-                    break
-                else
-                    echo "Invalid input. Please enter 'y' or 'n'."
-                fi
-            done
+    # This code will run if there ARE users on the system with Home Directories
+    if [[ ${#users[@]} -ge 0 ]]; then
+        # Declare an empty array to store users without the file
+        missing_users=()
 
-            useradd -m $username
-            passwd $username
-            echo "/home/$username/.config/wallpapers/default/6xVGpvY-arch-linux-wallpaper.png" > /home/$username/.config/$lower_main/.selected_wallpaper
-            chown $username:$username /home/$username/.config/$lower_main/.selected_wallpaper
-
-            if [[ $yn_sudo == "y" ]]; then
-                sudo usermod -aG wheel $username
-            fi
-            user_list+=("$username")  # Add the new user to the list
-        fi
-    fi
-
-
-
-
-
-
-    if [[ ${#user_list[@]} -gt 0 ]]; then
-        while true; do
-            echo "Existing users with home directories:"
-            for ((i = 0; i < ${#user_list[@]}; i++)); do
-                echo "$(($i + 1)). ${user_list[i]}"
-            done
-
-            read -p "Select a user to copy files to (or type 'add' to add another user, or 'skip' to skip to the next part): " selection
-
-            if [[ "$selection" == "add" ]]; then
-                while true; do
-                    read -p "Please enter a username: " username
-                    if [[ ! -z $username ]]; then
-                        break
-                    else
-                        echo "Username cannot be empty. Please enter a valid username."
-                    fi
-                done
-
-                while true; do
-                    read -p "Would you like to make this user a sudo user? (y/n): " yn_sudo
-                    if [[ $yn_sudo == "y" || $yn_sudo == "n" ]]; then
-                        break
-                    else
-                        echo "Invalid input. Please enter 'y' or 'n'."
-                    fi
-                done
-
-                useradd -m $username
-                passwd $username
-                echo "/home/$username/.config/wallpapers/default/6xVGpvY-arch-linux-wallpaper.png" > /home/$username/.config/$lower_main/.selected_wallpaper
-                chown $username:$username /home/$username/.config/$lower_main/.selected_wallpaper
-
-                if [[ $yn_sudo == "y" ]]; then
-                    sudo usermod -aG wheel $username
-                fi
-                user_list+=("$username")  # Add the new user to the list
-                echo "User $username added."
-            elif [[ "$selection" == "skip" ]]; then
-                break
-            elif [[ $selection =~ ^[0-9]+$ && $selection -ge 1 && $selection -le ${#user_list[@]} ]]; then
-                selected_user="${user_list[$(($selection - 1))]}"
-                if [[ ! -d "/home/$selected_user/.config/" ]]; then
-                    echo "Creating .config directory and copying files..."
-                    mkdir "/home/$selected_user/.config"
-                    cp -r assets/config/$lower_main "/home/$selected_user/.config/$lower_main"
-
-                    if [[ ! -d "/home/$selected_user/.config/wallpapers/" ]]; then
-                        cp -r assets/config/wallpapers/ "/home/$selected_user/.config/wallpapers/"
-                    else
-                        echo "Wallpapers directory already exists. Skipping copy."
-                    fi
-
-                    chsh -s "$zsh_path" $selected_user
-                    cp assets/dot.bashrc "/home/$selected_user/.bashrc"
-                    cp assets/dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-                    cp assets/dot.xscreensaver "/home/$selected_user/.xscreensaver"
-                    cp assets/dot.zshrc "/home/$selected_user/.zshrc"
-                    cp assets/dot.gtkrc-2.0 "/home/$selected_user/.gtkrc-2.0"
-                    git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                    chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-                    chmod -R +x "/home/$selected_user/.config/$lower_main/scripts/" 
-
-                    cp -r assets/config/Kvantum "/home/$selected_user/.config/"
-                    cp -r assets/config/qt5ct "/home/$selected_user/.config/"
-                    cp -r assets/config/qt6ct "/home/$selected_user/.config/"
-                    cp -r assets/config/picom "/home/$selected_user/.config/"
-                    cp -r assets/config/sxiv "/home/$selected_user/.config/"
-
-                    echo "/home/$selected_user/.config/wallpapers/default/6xVGpvY-arch-linux-wallpaper.png" > /home/$selected_user/.config/$lower_main/.selected_wallpaper
-                    chown $selected_user:$selected_user /home/$selected_user/.config/$lower_main/.selected_wallpaper
-                else
-                    echo "Copying files..."
-                    cp -r assets/config/$lower_main "/home/$selected_user/.config/$lower_main"
-                
-                    if [[ ! -d "/home/$selected_user/.config/wallpapers/" ]]; then
-                        cp -r assets/config/wallpapers/ "/home/$selected_user/.config/wallpapers/"
-                    else
-                        echo "Wallpapers directory already exists. Skipping copy."
-                    fi
-
-                    chsh -s "$zsh_path" $selected_user
-                    cp assets/dot.bashrc "/home/$selected_user/.bashrc"
-                    cp assets/dot.p10k.zsh "/home/$selected_user/.p10k.zsh"
-                    cp assets/dot.xscreensaver "/home/$selected_user/.xscreensaver"
-                    cp assets/dot.zshrc "/home/$selected_user/.zshrc"
-                    cp assets/dot.gtkrc-2.0 "/home/$selected_user/.gtkrc-2.0"
-                    git clone https://github.com/romkatv/powerlevel10k.git "/home/$selected_user/.config/powerlevel10k"
-                    chown -R $selected_user:$selected_user "/home/$selected_user/.config/"
-                    chmod -R +x "/home/$selected_user/.config/$lower_main/scripts/"
-
-                    cp -r assets/config/Kvantum "/home/$selected_user/.config/"
-                    cp -r assets/config/qt5ct "/home/$selected_user/.config/"
-                    cp -r assets/config/qt6ct "/home/$selected_user/.config/"
-                    cp -r assets/config/picom "/home/$selected_user/.config/"
-                    cp -r assets/config/sxiv "/home/$selected_user/.config/"
-
-                    echo "/home/$selected_user/.config/wallpapers/default/6xVGpvY-arch-linux-wallpaper.png" > /home/$selected_user/.config/$lower_main/.selected_wallpaper
-                    chown $selected_user:$selected_user /home/$selected_user/.config/$lower_main/.selected_wallpaper
-                fi
-            else
-                clear
-                echo "Invalid selection. Please try again."
+        # Loop through users and check for the existence of the file
+        for user in "${users[@]}"; do
+            user_home=$(eval echo "~$user")  # Get the home directory for each user
+            if [[ ! -d "$user_home/.config/$lower_main" ]]; then
+                missing_users+=("$user")  # Add user to the list of missing users
             fi
         done
+
+        # Display the users who are missing the file
+        echo "These users do not have $main configuration directory and files:"
+        for ((i = 0; i < ${#missing_users[@]}; i++)); do
+            echo "$(($i + 1)). ${missing_users[i]}"
+        done
+
+        echo "0. Add a new user"  # Option to add a new user
+        echo "q. Quit To Main Menu"  # Option to quit the loop
+
+        # Ask for user input to copy the file
+        echo "Please enter the number(s) of the user(s) you want to copy the file to (comma-separated, e.g., 1,2,3), 0 to add a new user, or 'q' to quit:"
+        read -r user_input
+
+        # Handle quit option
+        if [[ $user_input == "q" ]]; then
+            echo "Exiting..."
+            break
+        fi
+
+        # Convert input into an array
+        selected_users=($(echo "$user_input" | tr ',' ' '))
+
+        # Handle the case for creating a new user
+        if [[ " ${selected_users[@]} " =~ " 0 " ]]; then
+            read -p "Please Enter a username: " username
+            while [[ -z $username ]]; do
+                echo "Invalid Input"
+                read -p "Please Enter a username: " username
+            done
+
+            sudo useradd -m $username
+            sudo passwd $username
+
+            read -p "Would you like to make $username a sudo user? y/n " yn
+            while [[ -z $yn ]] || [[ ! $yn =~ [yn] ]]; do
+                echo "Invalid Input"
+                read -p "Would you like to make $username a sudo user? y/n " yn
+            done
+            if [[ $yn = y ]]; then
+                sudo usermod -aG sudo $username
+            fi
+
+            # Add new user to the missing_users array for copying files
+            missing_users+=("$username")
+        fi
+
+        # Copy the file to selected users' home directories
+        for idx in "${selected_users[@]}"; do
+            # Skip option "0" as it has already been handled
+            if [[ $idx == 0 ]]; then
+                continue
+            fi
+
+            user_to_copy=${missing_users[$((idx - 1))]}  # Adjust for 0-based index
+            user_home=$(eval echo "~$user_to_copy")
+            echo "Copying files to $user_home"
+
+            mkdir -p $user_home/.config
+            cp -r assets/config/$lower_main $user_home/.config/$lower_main
+            cp -r assets/config/gtk-3.0 $user_home/.config/gtk-3.0
+            cp -r assets/config/Kvantum/ $user_home/.config/Kvantum
+            cp -r assets/config/qt5ct/ $user_home/.config/qt5ct
+            cp -r assets/config/qt6ct/ $user_home/.config/qt6ct
+            cp -r assets/config/picom $user_home/.config/picom
+            cp -r assets/config/sxiv $user_home/.config/sxiv
+            cp -r assets/config/wallpapers/ $user_home/.config/wallpapers/
+            cp assets/dot.gtkrc-2.0 $user_home/.gtkrc-2.0
+            cp assets/dot.xscreensaver $user_home/.xscreensaver
+            cp assets/dot.zshrc $user_home/.zshrc
+            cp assets/dot.bashrc $user_home/.bashrc
+            cp assets/dot.p10k.zsh $user_home/.p10k.zsh
+            git clone https://github.com/romkatv/powerlevel10k.git $user_home/.config/powerlevel10k/
+            chsh -s "$zsh_path" $user_to_copyf
+            chown -R $user_to_copy:$user_to_copy $user_home
+            chmod -R +x $user_home/.config/$lower_main/scripts/
+        done
+
+        # Refresh the missing_users array after copying files
+        missing_users=()
+    else
+        echo "No users with home directories found."
+        break  # Exit the loop if no users are found
     fi
-}
+    done  # End of loop
+    }
+
 
 # Function: Set environment variables for qt and gtk theme
     set_env_variables() {
@@ -392,6 +351,27 @@ users_function() {
                     cp -r assets/Vedanta-dark-openbox /usr/share/themes/Vedanta-dark-openbox
 
                     users_function
+                ;;
+                "User Configuration" )
+                    clear
+                    while true; do
+                        read -p "To copy configuration files, Please Choose a Window Manager (openbox, qtile) or leave blank to add a user: " wm
+                        if [[ $wm = openbox ]]; then
+                            lower_main=openbox
+                            users_function
+                            break
+                        elif [[ $wm = qtile ]]; then
+                            lower_main=qtile
+                            users_function
+                            break
+                        elif [[ -z $wm ]]; then
+                            users_function
+                            break
+                        else
+                            clear
+                            echo "Invalid Input..."
+                        fi
+                    done
                 ;;
                 "Exit Installation Script" )
                     echo "Exiting Installation Script..."
