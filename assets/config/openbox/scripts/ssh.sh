@@ -30,4 +30,6 @@ if [[ -n "$SELECTED_NAME" ]]; then
     if [[ -n "$CONNECTION_STRING" ]]; then
         alacritty -e bash -c "$CONNECTION_STRING; echo 'Press any key to exit'; read -n 1"
     else
-        echo "No connection string found for
+        echo "No connection string found for"
+    fi
+fi
