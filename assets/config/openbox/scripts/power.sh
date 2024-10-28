@@ -2,11 +2,14 @@
 
 source /home/$USER/.config/openbox/scripts/sounds.sh
 
-chosen=$(printf " Lock\n󰍃 Logout\n󰜉 Reboot\n Suspend\n Hibernate\n⏻ PowerOff\n" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Power" -i -theme-str)
+#launcher="rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu"
+launcher="dmenu -i"
+
+chosen=$(printf " Lock\n󰍃 Logout\n󰜉 Reboot\n Suspend\n Hibernate\n⏻ PowerOff\n" | $launcher -p "Power")
 
 case "$chosen" in
     " Lock")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )
@@ -19,7 +22,7 @@ case "$chosen" in
         esac
         ;;
     "󰍃 Logout")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )
@@ -33,7 +36,7 @@ case "$chosen" in
         esac
         ;;
     "󰜉 Reboot")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )
@@ -46,7 +49,7 @@ case "$chosen" in
         esac
         ;;
     " Suspend")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )
@@ -59,7 +62,7 @@ case "$chosen" in
         esac
         ;;
     " Hibernate")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )
@@ -72,7 +75,7 @@ case "$chosen" in
         esac
         ;;
     "⏻ PowerOff")
-        yes_no=$(printf " no\n yes" | rofi -config /home/$USER/.config/openbox/rofi/config.rasi -dmenu -p "Would You Like to $chosen" -i -theme-str)
+        yes_no=$(printf " no\n yes" | $launcher -p "Would You Like to $chosen")
         case $yes_no in
             [no]* ) exit;;
             [yes]* )

@@ -195,14 +195,14 @@ tooltip_padding = 4 4
 tooltip_background_id = 5
 tooltip_font_color = #dddddd 100
 
-# Rofi App Menu
+# Applications Menu (Rofi and Dmenu)
 execp = new
 execp_command = echo /home/$USER/.config/openbox/png_icons/menu.png
 execp_has_icon = 1
 execp_interval = 0
 execp_icon_w = 30
 execp_icon_h =30
-execp_lclick_command = /home/$USER/.config/openbox/scripts/rofi.sh
+execp_lclick_command = /home/$USER/.config/openbox/scripts/applications.sh
 
 # Brightness Control
 execp = new
