@@ -5,6 +5,9 @@
 SSH_DIR="$HOME/.ssh"
 SERVER_LIST="$SSH_DIR/servers.txt"
 
+#launcher="rofi -config /home/$USER/.config/qtile/rofi/config.rasi -dmenu"
+launcher="dmenu -i"
+
 # Check if the SSH directory exists; if not, create it silently
 if [[ ! -d "$SSH_DIR" ]]; then
     mkdir -p "$SSH_DIR"
@@ -18,7 +21,7 @@ if [[ ! -f "$SERVER_LIST" ]]; then
 fi
 
 # Display the server names using rofi, ignoring commented lines
-SELECTED_NAME=$(grep -v '^#' "$SERVER_LIST" | awk -F'|' '{print $1}' | rofi -config "$HOME/.config/qtile/rofi/config.rasi" -dmenu -p "Please select a SSH Server" -i)
+SELECTED_NAME=$(grep -v '^#' "$SERVER_LIST" | awk -F'|' '{print $1}' | $launcher -p "Please select a SSH Server")
 
 # Trim any extra spaces from the selected name
 SELECTED_NAME=$(echo "$SELECTED_NAME" | xargs)

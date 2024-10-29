@@ -188,7 +188,7 @@ keys = [
 
     # Start of My Config: setting my own keys
     Key([alt], "q", lazy.spawn(get_script_path("power.sh")), desc="powermenu"),
-    Key([alt], "d", lazy.spawn(get_script_path("rofi.sh")), desc="menu"),  
+    Key([alt], "d", lazy.spawn(get_script_path("applications.sh")), desc="menu"),  
     Key([alt], "f", lazy.spawn("firefox")),
     # End of My Config: setting my own keys
 ]
@@ -256,7 +256,7 @@ screens = [
                 widget.TextBox(
                     text=" ",
                     foreground='#00ffff',  # Aqua
-                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("rofi.sh"))}
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(get_script_path("applications.sh"))}
                 ),
                 widget.Spacer(length=10),
                 widget.Clock(

@@ -1,13 +1,25 @@
 #!/bin/bash
 
+#launcher="rofi -config /home/$USER/.config/qtile/rofi/config.rasi -dmenu"
+launcher="dmenu -i"
+
 main_message=$(echo -e "WiFi Manager:\nWhat would you like to do?")
-main_menu=$(echo -e "󱚽 Connect to a Wifi Network\n󰖪 Enable Or Disable Wifi\n󱛅 Forget a Wifi Network" | rofi -config /home/$USER/.config/qtile/rofi/config.rasi -dmenu -p "$main_message")
+main_menu=$(echo -e "󱚽 Connect to a Wifi Network\n󰖪 Enable Or Disable Wifi\n󱛅 Forget a Wifi Network" | $launcher -p "$main_message")
+
+
+
+
+
+
+
+
+
 
 if [[ $main_menu = "󱚽 Connect to a Wifi Network" ]]; then
     # List all available Wi-Fi networks and mark the active one
     wifi_list=$(nmcli --fields SSID,ACTIVE device wifi list | sed '/^$/d' | grep -v -e '^--' -e '^SSID' | awk -F'  +' '{if ($2 == "yes") print $1 " (active)"; else print $1}' | sort -u)
     connect_wifi=$(echo -e "WiFi Manager:\nChoose a Wifi Network")
-    wifi_ssid=$(echo "$wifi_list" | rofi -config /home/$USER/.config/qtile/rofi/config.rasi -dmenu -p "$connect_wifi")
+    wifi_ssid=$(echo "$wifi_list" | $launcher -p "$connect_wifi")
 
     if [[ -z $wifi_ssid ]]; then
         exit 0  # Exit if no SSID is selected
