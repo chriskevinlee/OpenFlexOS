@@ -140,7 +140,7 @@ users_function() {
                 read -p "Would you like to make $username a sudo user? y/n " yn
             done
             if [[ $yn = y ]]; then
-                sudo usermod -aG sudo $username
+                sudo usermod -aG wheel $username
             fi
 
             # Add new user to the missing_users array for copying files
