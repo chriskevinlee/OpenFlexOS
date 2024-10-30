@@ -15,7 +15,7 @@ if [ -s "$CONFIG_FILE" ]; then
   feh --bg-scale "$SELECTED_WALLPAPER" &
 fi
 
-source /home/$USER/.config/qtile/scripts/sound.sh
+source /home/$USER/.config/qtile/scripts/sounds.sh
 if [[ ! -z "$login_sound" && $active_sounds = yes ]]; then
     mpv --no-video "${sounds_dir}${login_sound}" &
 fi
