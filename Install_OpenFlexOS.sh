@@ -26,6 +26,7 @@
         pacman --noconfirm --needed -S xscreensaver # Screensaver
         pacman --noconfirm --needed -S feh # To set wallpapers
         pacman --noconfirm --needed -S rofi # For Application and power Laucher
+        pacman --noconfirm --needed -S dmenu # For Application and power Laucher
         pacman --noconfirm --needed -S arandr # To set Screen Resolution
         pacman --noconfirm --needed -S ttf-nerd-fonts-symbols # For icons
         pacman --noconfirm --needed -S xdg-user-dirs # Create user directories upon user creation
