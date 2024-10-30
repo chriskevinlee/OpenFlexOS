@@ -27,9 +27,9 @@ case "$chosen" in
             [no]* ) exit;;
             [yes]* )
                 if [[ "$active_sounds" = yes && ! -z "$logout_sound" && -f "${sounds_dir}${logout_sound}" ]]; then
-			mpv --no-video "${sounds_dir}${logout_sound}" && qtile cmd-obj -o cmd -f shutdow
+			mpv --no-video "${sounds_dir}${logout_sound}" && qtile cmd-obj -o cmd -f shutdown
                 else
-                    qtile cmd-obj -o cmd -f shutdow
+                    qtile cmd-obj -o cmd -f shutdown
                     
                 fi
                 ;;
