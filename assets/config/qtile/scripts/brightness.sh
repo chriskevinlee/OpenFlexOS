@@ -20,4 +20,4 @@ case $1 in
         ;;
 esac
 
-echo $current_brightness
+echo "󰃠 $current_brightness"
