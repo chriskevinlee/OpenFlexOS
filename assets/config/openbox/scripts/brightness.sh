@@ -1,23 +1,34 @@
 #!/bin/bash
-display_name=$(xrandr --query | grep " connected" | cut -d ' ' -f1)
-current_brightness=$(xrandr --verbose | grep -m 1 -i brightness | awk '{print $2}')
-step=0.1
 
-case $1 in
-    up )
-        new_brightness=$(echo "$current_brightness + $step" | bc)
-        if (( $(echo "$new_brightness > 2" | bc -l) )); then
-                    new_brightness=2
-            fi
-        xrandr --output $display_name --brightness $new_brightness
-        ;;
-    down )
-        new_brightness=$(echo "$current_brightness - $step" | bc)
-                if (( $(echo "$new_brightness < 0.1" | bc -l) )); then
-            new_brightness=0.1
-        fi
-        xrandr --output $display_name --brightness $new_brightness
-        ;;
-esac
+# Define step percentage
+STEP=10%
 
-echo $current_brightness
+# Check if there is any backlight directory
+if [ -d /sys/class/backlight ] && [ "$(ls -A /sys/class/backlight)" ]; then
+    # Get the first available backlight directory
+    BACKLIGHT_DIR=$(ls /sys/class/backlight | head -n 1)
+
+    # Adjust brightness based on argument
+    case $1 in
+        up)
+            brightnessctl set $STEP+
+            current_brightness=$(brightnessctl get)
+            max_brightness=$(brightnessctl max)
+            percentage=$(( 100 * current_brightness / max_brightness ))
+            dunstify -r "48457" "Brightness Control" "$percentage"
+            ;;
+        down)
+            brightnessctl set $STEP-
+            current_brightness=$(brightnessctl get)
+            max_brightness=$(brightnessctl max)
+            percentage=$(( 100 * current_brightness / max_brightness ))
+            dunstify -r "48457" "Brightness Control" "$percentage"
+            ;;
+    esac
+
+    # Display the current brightness level
+    current_brightness=$(brightnessctl get)
+    max_brightness=$(brightnessctl max)
+    percentage=$(( 100 * current_brightness / max_brightness ))
+    echo "$percentage%"
+fi
