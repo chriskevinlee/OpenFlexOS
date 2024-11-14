@@ -65,6 +65,24 @@
         pacman --noconfirm --needed -S pacman-contrib
         pacman --noconfirm --needed -S pkgfile
 
+        pacman --noconfirm --needed -S gcc
+        pacman --noconfirm --needed -S python
+        pacman --noconfirm --needed -S xcb-util
+        pacman --noconfirm --needed -S libx11
+        pacman --noconfirm --needed -S pixman
+        pacman --noconfirm --needed -S libdbus
+        pacman --noconfirm --needed -S libconfig
+        pacman --noconfirm --needed -S libepoxy
+        pacman --noconfirm --needed -S libev
+        pacman --noconfirm --needed -S uthash
+
+        cd /tmp
+        git clone https://github.com/FT-Labs/picom.git
+        cd picom
+        meson setup --buildtype=release build
+        ninja -C build
+        ninja -C build install
+
     }
 
 # Function: Get zsh path, checks to see if any users already exists if not it ask the user to create a user and allows user to copy config files to already existing users and added users
