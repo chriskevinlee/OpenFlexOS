@@ -67,6 +67,8 @@
 
         pacman --noconfirm --needed -S gcc
         pacman --noconfirm --needed -S python
+        pacman --noconfirm --needed -S meson
+        pacman --noconfirm --needed -S ninja
         pacman --noconfirm --needed -S xcb-util
         pacman --noconfirm --needed -S libx11
         pacman --noconfirm --needed -S pixman
