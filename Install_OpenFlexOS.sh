@@ -66,6 +66,7 @@
         pacman --noconfirm --needed -S pkgfile
 
         pacman --noconfirm --needed -S gcc
+        pacman --noconfirm --needed -S pkg-config
         pacman --noconfirm --needed -S python
         pacman --noconfirm --needed -S meson
         pacman --noconfirm --needed -S ninja
