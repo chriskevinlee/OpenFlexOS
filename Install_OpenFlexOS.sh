@@ -48,7 +48,6 @@
         pacman --noconfirm --needed -S htop # Terminal System Monitor
         pacman --noconfirm --needed -S caja # A file Manager
         pacman --noconfirm --needed -S xarchiver # Archiver to work with file manager pcmanfm
-        pacman --noconfirm --needed -S udiskie # For automouting with the user permissions
         pacman --noconfirm --needed -S p7zip
         pacman --noconfirm --needed -S unzip # Add zip support to xarchiver
         pacman --noconfirm --needed -S polkit-gnome # Polkit authentication
