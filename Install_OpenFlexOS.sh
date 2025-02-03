@@ -60,6 +60,7 @@
         pacman --noconfirm --needed -S dunst # Notification System
         pacman --noconfirm --needed -S picom # Compositor for effect
         pacman --noconfirm --needed -S wmctrl # To change sxiv window title, used in wallpaper_changer.sh
+        pacman --noconfirm --needed -S xf86-input-libinput xbindkeys sxhkd playerctl
         pacman --noconfirm --needed -S galculator
         pacman --noconfirm --needed -S python-psutil
         pacman --noconfirm --needed -S pacman-contrib
