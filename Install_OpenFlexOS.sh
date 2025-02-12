@@ -279,7 +279,9 @@
 
 # Function: Miscellaneous configurations 
     miscellaneous_configs () {
-         cp OpenFlexOS-Configs/wallpaper_changer.sh /usr/local/bin/wallpaper_changer.sh
+        cp OpenFlexOS-Configs/nd /usr/local/bin/nd
+        chmod +x /usr/local/bin/nd
+        cp OpenFlexOS-Configs/wallpaper_changer.sh /usr/local/bin/wallpaper_changer.sh
         chmod +x /usr/local/bin/wallpaper_changer.sh
         cp OpenFlexOS-Configs/wallpaper.desktop /usr/share/applications/wallpaper.desktop
 
