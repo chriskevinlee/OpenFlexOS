@@ -87,6 +87,27 @@
         ninja -C build
         ninja -C build install
 
+        echo "Installing python3-pip..."
+        sudo apt install -y python3-pip xdotool
+        
+        echo "Cloning nerd-dictation..."
+        git clone https://github.com/ideasman42/nerd-dictation.git /opt/nerd-dictation
+        cd /opt/nerd-dictation
+        
+        echo "Creating and activating virtual environment..."
+        python3 -m venv vosk-venv
+        source vosk-venv/bin/activate
+        
+        echo "Downloading Vosk model..."
+        wget -q --show-progress https://alphacephei.com/kaldi/models/vosk-model-small-en-us-0.15.zip
+        
+        echo "Extracting Vosk model..."
+        unzip -q vosk-model-small-en-us-0.15.zip
+        mv vosk-model-small-en-us-0.15 model
+        
+        echo "Installing Vosk inside virtual environment..."
+        pip install vosk
+
     }
 
 # Function: Get zsh path, checks to see if any users already exists if not it ask the user to create a user and allows user to copy config files to already existing users and added users
