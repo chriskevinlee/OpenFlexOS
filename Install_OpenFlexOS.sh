@@ -88,7 +88,7 @@
         ninja -C build install
 
         echo "Installing python3-pip..."
-        sudo apt install -y python3-pip xdotool
+        pacman --noconfirm --needed -S python3 xdotool
         
         echo "Cloning nerd-dictation..."
         git clone https://github.com/ideasman42/nerd-dictation.git /opt/nerd-dictation
